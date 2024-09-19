@@ -1,6 +1,12 @@
+import CurrentConditionsDisplay from './CurrentConditionsDisplay';
 import WeatherData from './WeatherData';
 
 const weatherData = new WeatherData();
+
+// Creates new observer (for current conditions)
+const currentConditions = new CurrentConditionsDisplay();
+// Subscribes the observer to weatherData
+weatherData.addObserver(currentConditions)
 
 weatherData.setMeasurements(80, 65, 30.4);
 

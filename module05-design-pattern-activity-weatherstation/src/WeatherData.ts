@@ -45,9 +45,18 @@ export default class WeatherData {
   }
 
   private measurementsChanged() {
-    this._statisticsDisplay.displayStatistics(this);
-    this._forecastDisplay.displayForecast(this);
-    CurrentConditionsDisplay.displayCurrentConditions(this);
-    HeatIndexDisplay.displayHeatIndex(this);
+    //  6) Order is now different because it is based on order we added the Displays
+    this.notifyAll()
+
+    // Not needed anymore (I think)
+    // this._statisticsDisplay.displayStatistics(this);
+    // this._forecastDisplay.displayForecast(this);
+    // CurrentConditionsDisplay.displayCurrentConditions(this);
+    // HeatIndexDisplay.displayHeatIndex(this);
+  }
+
+  //  Double check this is right
+  private notifyAll() {
+    this.observer.forEach(obs => obs.update(this))
   }
 }
