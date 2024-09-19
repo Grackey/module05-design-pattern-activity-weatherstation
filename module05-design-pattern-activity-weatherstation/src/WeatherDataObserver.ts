@@ -1,5 +1,6 @@
+import WeatherData from "./WeatherData";
 
 
 export interface IWeatherDataObserver {
-    update():void
+    update(weatherData: WeatherData):void
 }
