@@ -2,9 +2,20 @@ import StatisticsDisplay from './StatisticsDisplay';
 import ForecastDisplay from './ForecastDisplay';
 import CurrentConditionsDisplay from './CurrentConditionsDisplay';
 import HeatIndexDisplay from './HeatIndexDisplay';
+import { IWeatherDataObserver } from './WeatherDataObserver';
 
 export default class WeatherData {
   private _temperature = 0;
+  
+  private observer: IWeatherDataObserver[] = []
+
+  public addObserver(obs:IWeatherDataObserver): void {
+    this.observer.push(obs);
+  }
+
+  public removeObserver(obs:IWeatherDataObserver): void {
+    this.observer = this.observer.filter((item) => item !== obs);
+  }
 
   get temperature(): number {
     return this._temperature;
